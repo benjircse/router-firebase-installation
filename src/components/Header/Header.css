@@ -1,6 +1,6 @@
 .link-uix {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 12fr);
     justify-content: space-around;
     background-color: rgb(9, 9, 31);
     padding: 15px;
@@ -17,4 +17,8 @@
     text-decoration: none;
     color: white;
     margin-right: 20px;
+}
+
+.login-section {
+    padding-left: 100px;
 }
