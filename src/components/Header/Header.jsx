@@ -1,10 +1,12 @@
+import { getAuth,signOut} from 'firebase/auth';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import app from '../../firebase-inte';
+import{useAuthState} from 'react-firebase-hooks/auth'
 import './Header.css'
+const auth=getAuth(app)
 const Header = () => {
-  const {user ,hendelSingOut}=useFirebase();
-  console.log(user)
+  const [user]=useAuthState(auth)
     return (
         <div>
           <nav className="link-uix">
@@ -12,7 +14,7 @@ const Header = () => {
                 hi
             </div>
           <div className='uix-container'>
-           <Link to='/'>Home</Link>
+           <Link to='/home'>Home</Link>
             <Link to='/shop'>Shop</Link>
             <Link to='/order'>Order</Link>
             <Link to='/review'>Review</Link>
@@ -22,11 +24,10 @@ const Header = () => {
          
             {
               user?.email?
-              <Link onClick={hendelSingOut}>Singout</Link>
+              <Link onClick={()=>signOut(auth)}>Singout</Link>
               : <Link to='/login'>Login</Link>
               
             }
-             <span className='text-danger'>{ user?.displayName && user.displayName}</span>
            </div>
           </nav>
 
